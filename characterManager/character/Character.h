@@ -8,12 +8,13 @@ using namespace std;
 
 class Character{
 private:
-    string name, guild, background;
+    string name, guild, background, identity;
     int grit, logic, confidence;
 public:
     Character(string);
     void setGuild(string);
-    void setBg(string);
+    void setBg();
+    void setIdentity();
     void setStats(int,int,int);
     int getGrit();
     int getLogic();
