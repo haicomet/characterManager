@@ -1,3 +1,6 @@
+#ifndef MENTOR_H
+#define MENTOR_H
+
 #include <string>
 #include <fstream>
 #include <vector>
@@ -28,3 +31,5 @@ public:
 };
 
 vector<Mentor> loadMentors();
+
+#endif

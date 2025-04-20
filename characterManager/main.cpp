@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include "Mentor.h"
-#include "Character.h"
+#include "mentor/Mentor.h"
+#include "character/Character.h"
 
 using namespace std;
 
