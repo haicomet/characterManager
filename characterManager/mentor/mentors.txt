@@ -1,0 +1,44 @@
+Cyber
+Anonymous
+The elusive hacktivist collective known for cyber-protests and advocating digital freedom. No face, no name, just action.
+Stay anonymous, but leave your code everywhere.
+
+Cyber
+Linus Torvalds
+Creator of Linux and Git. Known for his no-nonsense leadership style and belief in open-source collaboration. Once said: "Talk is cheap. Show me the code."
+Break problems into smaller pieces. Even the kernel started with one line of code.
+
+Cyber
+Mati Aharoni
+Founder of Offensive Security and creator of Kali Linux. A pioneer in ethical hacking tools and cybersecurity education.
+Curiosity is your best tool. Test everything, assume nothing.
+
+GameDev
+Naotoshi Zin
+Lead developer of "Cave Story," a cult-classic indie game made entirely by one person over 5 years.
+Polish your game like it’s your last.
+
+GameDev
+Notch
+Creator of Minecraft. Proved that simplicity and creativity can build worlds. Started as a solo developer in his apartment.
+Games are about fun first. Optimize later.
+
+GameDev
+Toru Iwatani
+Designed Pac-Man to appeal to everyone. Turned dots and ghosts into a global phenomenon.
+Design for joy, not just complexity
+
+WebDev
+Larry Page
+Google co-founder who transformed how we access information. Advocates for moonshot thinking.
+Automate the boring stuff. Focus on the 10x ideas.
+
+WebDev
+Sergey Brin
+Co-founder of Google. Revolutionized search algorithms and made the internet’s chaos navigable.
+Data beats opinions. Always test your assumptions.
+
+WebDev
+Tim Berners-Lee
+Inventor of the World Wide Web. Gave it to the world for free. Now fights for a decentralized, open internet.
+The web should empower, not control.
