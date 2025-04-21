@@ -14,7 +14,8 @@ shared_ptr<Character> createPlayer(){
     int ch;
     shared_ptr<Character> player;
     
-    cout << "Enter name: "; //getting skipped for some reason
+    cout << "Enter name: ";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin,name);
     
     cout << "\nTech area of interest: \n"
