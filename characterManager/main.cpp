@@ -1,12 +1,23 @@
 #include <iostream>
 #include <vector>
-#include <map>
 #include <memory>
+#include <map>
+
+// character & mentor headers
 #include "Mentor.h"
 #include "Character.h"
 #include "WebDev.h"
 #include "GameDev.h"
 #include "Cyber.h"
+
+// enemy system
+#include "enemy.h"
+#include "quiz.h"
+#include "popQuiz.h"
+#include "midterm.h"
+#include "impostorSyndrome.h"
+#include "finalExam.h"
+
 using namespace std;
 
 shared_ptr<Character> createPlayer(){
@@ -76,3 +87,39 @@ for (Mentor m : mentors)
          << "Bio: " << m.getBio() << "\n"
          << "Hint: " << m.getHint() << "\n\n";
 }*/
+
+
+/* Test Enemy Class since i cant lol
+
+
+int main() 
+
+    // build a list of one of each enemy
+    vector<unique_ptr<Enemy>> enemies;
+    enemies.emplace_back(make_unique<Quiz>());
+    enemies.emplace_back(make_unique<PopQuiz>());
+    enemies.emplace_back(make_unique<Midterm>());
+    enemies.emplace_back(make_unique<ImpostorSyndrome>());
+    enemies.emplace_back(make_unique<FinalExam>());
+
+    for (auto& enemy : enemies) {
+        cout << "=== Testing Enemy: "
+             << enemy->getName()
+             << " (Difficulty "
+             << enemy->getDifficulty()
+             << ") ===\n\n";
+
+        for (int i = 1; i <= 3; ++i) {
+            cout << "--- Puzzle #" << i << " ---\n";
+            enemy->attack();
+            enemy->generatePuzzle();
+            cout << "\n";
+        }
+        cout << "---------------------------------\n\n";
+    }
+
+    return 0;
+}
+
+
+*/
