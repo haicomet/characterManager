@@ -1,6 +1,9 @@
 #include "Character.h"
 
-Character::Character(string n){name = n;}
+Character::Character(string n):
+    name(n), guild(""), background(""), identity(""),
+    grit(0), logic(0), confidence(0),
+    xp(0), level(0), xpGained(1), toLvlUp(2) {}
 void Character::setGuild(string g){ guild = g;}
 void Character::setBg(){
     int choice;
@@ -68,10 +71,48 @@ void Character::setIdentity(){
             break;
     }
 }
-void Character::setStats(int g,int l,int c){
-    grit = g;
-    logic = l;
-    confidence = c;
+
+void Character::setRace() {
+    int choice;
+    cout << "Which racial/ethnic identity do you most identify with?\n"
+         << "1. Black or African American\n"
+         << "2. Hispanic or Latino/a/x\n"
+         << "3. Asian or Pacific Islander\n"
+         << "4. Native American or Indigenous\n"
+         << "5. White\n"
+         << "6. Multiracial\n"
+         << "7. Prefer not to say / Other\n";
+    cin >> choice;
+
+    switch (choice) {
+        case 1:
+            race = "Black or African American";
+            break;
+        case 2:
+            race = "Hispanic or Latino/a/x";
+            break;
+        case 3:
+            race = "Asian or Pacific Islander";
+            break;
+        case 4:
+            race = "Native American or Indigenous";
+            break;
+        case 5:
+            race = "White";
+            break;
+        case 6:
+            race = "Multiracial";
+            break;
+        case 7:
+            race = "Prefer not to say / Other";
+            break;
+    }
+}
+
+void Character::boostStats(int g,int l,int c){
+    grit += g;
+    logic += l;
+    confidence += c;
 }
 int Character::getGrit(){return grit;}
 int Character::getLogic(){return logic;}
@@ -81,9 +122,70 @@ void Character::displayChar(){
     cout << "Name: "<< name << endl;
     cout << "Guild: " << guild << endl;
     cout << "Background: " << background << endl;
+    cout << "Identity: " << identity << endl;
+    cout << "Race/Ethnicity: " << race << endl;
     cout << endl;
     cout << "----------- STATS -----------" << endl;
     cout << "Perseverance:\t\t " << grit << endl;
     cout << "Confidence:  \t\t " << confidence << endl;
     cout << "Logic:       \t\t " << logic << endl;
+}
+
+void Character::levelUp(){
+    level++;
+    cout << "You've leveled up to: LEVEL " << level << endl;
+}
+
+void plusXP(Character& c){
+    c.xp += c.xpGained;
+    
+    while (c.xp >= c.toLvlUp){
+        c.xp -= c.toLvlUp;
+        c.levelUp();
+        c.toLvlUp+=2;
+        c.boostStats(2,2,1);
+        cout << "Stats increased!" << "\nGrit:\t" << c.grit << "\nLogic:\t" << c.logic << "\nConfidence:\t" << c.confidence ;
+        cout << "Current XP: " << c.xp << " \t" << " needed for next level up!\n";
+    }
+}
+
+void Character::saveCharacter(){
+    ofstream outFile("characters.txt");
+    if (!outFile){
+        cout << "Could not open file.\n";
+    }
+    outFile << name << "\n";
+    outFile << guild << "\n";
+    outFile << background << "\n";
+    outFile << identity << "\n";
+    outFile << race << "\n";
+    outFile << grit << "\n";
+    outFile << logic << "\n";
+    outFile << confidence << "\n";
+    outFile << xp << "\n";
+    outFile << level << "\n";
+    outFile << xpGained << "\n";
+    outFile << toLvlUp << "\n";
+
+    outFile.close();
+    
+    cout << "Character saved :)\n";
+}
+
+void Character::loadCharacter(){
+    ifstream inFile("characters.txt");
+    if (!inFile){
+        cout << "Could not open file.\n";
+    }
+    getline(inFile, name);
+    getline(inFile, guild);
+    getline(inFile, background);
+    getline(inFile, identity);
+    getline(inFile, race);
+    inFile >> grit >> logic >> confidence;
+    inFile >> xp >> level >> xpGained >> toLvlUp;
+
+    inFile.close();
+    
+    cout << "Character loaded...\n";
 }
