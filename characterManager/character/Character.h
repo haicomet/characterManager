@@ -10,7 +10,7 @@ using namespace std;
 class Character{
 private:
     string name, guild, background, identity, race;
-    int grit, logic, confidence;
+    int grit, logic, confidence; //add gpa as health
     int xp, level, xpGained, toLvlUp;
 public:
     Character(string);

@@ -2,6 +2,6 @@
 
 GameDev::GameDev(string nm):Character(nm){
     setGuild("GameDev");
-    setStats(6, 10, 5);
+    boostStats(6, 10, 5);
 }
 
