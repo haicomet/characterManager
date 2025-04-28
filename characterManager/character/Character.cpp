@@ -3,7 +3,7 @@
 Character::Character(string n):
     name(n), guild(""), background(""), identity(""),
     grit(0), logic(0), confidence(0),
-    xp(0), level(0), xpGained(1), toLvlUp(2) {}
+    xp(0), level(0), xpGained(1), toLvlUp(2), gpa(5.0) {}
 void Character::setGuild(string g){ guild = g;}
 void Character::setBg(){
     int choice;
@@ -129,8 +129,20 @@ void Character::displayChar(){
     cout << "Perseverance:\t\t " << grit << endl;
     cout << "Confidence:  \t\t " << confidence << endl;
     cout << "Logic:       \t\t " << logic << endl;
+    cout << "GPA:         \t\t " << gpa << endl;
 }
-
+void Character::takeDamage(){
+    gpa -= 0.1;
+    confidence -= 0.5;
+    if (gpa < 0.0)
+        gpa = 0.0;
+}
+void Character::heal(){
+    gpa += 0.1;
+    confidence += 0.2;
+    if (gpa > 5.0)
+        gpa = 5.0;
+}
 void Character::levelUp(){
     level++;
     cout << "You've leveled up to: LEVEL " << level << endl;
@@ -162,6 +174,7 @@ void Character::saveCharacter(){
     outFile << grit << "\n";
     outFile << logic << "\n";
     outFile << confidence << "\n";
+    outFile << gpa << "\n";
     outFile << xp << "\n";
     outFile << level << "\n";
     outFile << xpGained << "\n";
@@ -182,10 +195,24 @@ void Character::loadCharacter(){
     getline(inFile, background);
     getline(inFile, identity);
     getline(inFile, race);
-    inFile >> grit >> logic >> confidence;
+    inFile >> grit >> logic >> confidence >> gpa;
     inFile >> xp >> level >> xpGained >> toLvlUp;
 
     inFile.close();
     
     cout << "Character loaded...\n";
+}
+
+void Character::getMentorList(){
+    mentorList = loadMentors();
+}
+void Character::unlockMentor(){
+    if (level < mentorList.size()){
+        unlockedMentors.push_back(mentorList[level]);
+    }
+}
+void Character::displayUnlockedMentors(){
+    for (auto& mentor : unlockedMentors) {
+        mentor.getBio();
+    }
 }

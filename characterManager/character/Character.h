@@ -5,13 +5,17 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <memory>
+#include "Mentor.h"
 using namespace std;
 
 class Character{
 private:
     string name, guild, background, identity, race;
-    int grit, logic, confidence; //add gpa as health
+    int grit, logic, confidence;
     int xp, level, xpGained, toLvlUp;
+    double gpa;
+    vector<Mentor> mentorList, unlockedMentors;
 public:
     Character(string);
     void setGuild(string);
@@ -24,10 +28,15 @@ public:
     int getConfidence();
     void displayChar();
     void levelUp();
+    double getGPA();
+    void takeDamage();
+    void heal();
     friend void plusXP(Character&);
     void saveCharacter();
     void loadCharacter();
-    
+    void getMentorList();
+    void unlockMentor();
+    void displayUnlockedMentors();
 };
 
 #endif
