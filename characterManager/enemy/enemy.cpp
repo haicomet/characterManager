@@ -1,6 +1,7 @@
 #include "enemy.h"
 #include <iostream>
 #include <random>
+#include <cstdlib>
 using namespace std;
 
 Enemy::Enemy(const string &n, int hp, int diff,
@@ -15,13 +16,11 @@ void Enemy::attack() const
 
 void Enemy::generatePuzzle() const
 {
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<> dis(0, puzzles.size() - 1);
-    auto [question, answer] = puzzles[dis(gen)];
+    int randomIndex = rand() % puzzles.size();
+    auto [question, answer] = puzzles[randomIndex];
 
     cout << name << " asks:\n"
-              << question << "\nYour answer: ";
+         << question << "\nYour answer: ";
 
     string response;
     getline(cin, response);
@@ -30,7 +29,7 @@ void Enemy::generatePuzzle() const
         cout << "Correct! You deal extra damage.\n";
     else
         cout << "Wrong! The right answer was “"
-                  << answer << "”.\n";
+             << answer << "”.\n";
 }
 
 void Enemy::takeDamage(int damage)

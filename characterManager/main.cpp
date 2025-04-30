@@ -84,21 +84,13 @@ void startBattle(shared_ptr<Character> player) {
     auto& enemy = enemies[rand() % enemies.size()];
 
     cout << "Challenge: " << enemy->getName() << "!\n";
-    enemy->generatePuzzle() ;
 
-    string answer;
-    cout << "Your answer: ";
-    cin.ignore();
-    getline(cin, answer);
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    enemy->generatePuzzle();
 
-    cout << "\nResult: ";
-    if (!answer.empty()) {
-        cout << "You solved the challenge!\n";
-    } else {
-        cout << "You struggled but survived.\n";
-    }
+    
+    cout << "\nResult: You survived the challenge!\n";
 }
-
 
 void viewMentors() {
     cout << "=== MENTORS ===\n";
