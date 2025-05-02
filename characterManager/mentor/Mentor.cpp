@@ -1,56 +1,68 @@
 #include "Mentor.h"
-#include <string>
+#include <fstream>
 #include <iostream>
+#include <vector>
+#include <string>
 
-using namespace std;
+Mentor::Mentor() : name(), guild(), bio(), hint() {}
 
-Mentor::Mentor()
+Mentor::Mentor(
+    const std::string &name,
+    const std::string &guild,
+    const std::string &bio,
+    const std::string &hint) : name(name), guild(guild), bio(bio), hint(hint) {}
+
+std::string Mentor::getName()
 {
-    name = "";
-    guild = "";
-    bio = "";
-    hint = "";
+    return name;
 }
 
-Mentor::Mentor(string &name, string &guild, string &bio, string &hint)
-    : name(name), guild(guild), bio(bio), hint(hint) {}
+std::string Mentor::getGuild()
+{
+    return guild;
+}
 
-string Mentor::getName() { return name; }
-string Mentor::getGuild() { return guild; }
-string Mentor::getBio() { return bio; }
-string Mentor::getHint() { return hint; }
+std::string Mentor::getBio()
+{
+    return bio;
+}
+
+std::string Mentor::getHint()
+{
+    return hint;
+}
 
 void Mentor::displayBio()
 {
-    cout << "=== " << name << " (" << guild << ") ===\n";
-    cout << bio << "\n\n";
+    std::cout << "=== " << name << " (" << guild << ") ===\n"
+              << bio << "\n\n";
 }
 
 void Mentor::displayHint()
 {
-    cout << name << "'s Advice: " << hint << "\n";
+    std::cout << name << "'s Advice: " << hint << "\n";
 }
 
-vector<Mentor> loadMentors()
+std::vector<Mentor> loadMentors()
 {
-    vector<Mentor> mentors;
-    ifstream file("mentors.txt");
+    std::vector<Mentor> mentors;
+    std::ifstream file("mentors.txt");
 
     if (!file.is_open())
     {
-        cerr << "Error: Could not open mentors.txt" << endl;
+        std::cerr << "Error: Could not open mentors.txt" << std::endl;
         return mentors;
     }
 
     Mentor mentor;
-    while (getline(file, mentor.guild))
+    while (std::getline(file, mentor.guild))
     {
-        getline(file, mentor.name);
-        getline(file, mentor.bio);
-        getline(file, mentor.hint);
+        std::getline(file, mentor.name);
+        std::getline(file, mentor.bio);
+        std::getline(file, mentor.hint);
 
-        string emptyLine;
-        getline(file, emptyLine);
+        std::string emptyLine;
+        std::getline(file, emptyLine);
 
         mentors.push_back(mentor);
     }

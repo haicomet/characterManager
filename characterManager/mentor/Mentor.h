@@ -17,7 +17,7 @@ private:
 
 public:
     Mentor();
-    Mentor( string &name, string &guild, string &bio, string &hint);
+    Mentor(const string &name, const string &guild, const string &bio, const string &hint);
 
     string getName();
     string getGuild();
