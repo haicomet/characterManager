@@ -1,37 +1,47 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include <iostream>
 #include <string>
 #include <vector>
-#include <fstream>
-#include <memory>
 #include "Mentor.h"
-using namespace std;
 
-class Character{
+class Character {
 private:
-    string name, guild, background, identity, race;
-    int grit, logic, confidence;
-    int xp, level, xpGained, toLvlUp;
+    std::string name;
+    std::string guild;
+    std::string background;
+    std::string identity;
+    std::string race;
+
+    int grit;
+    int logic;
+    int confidence;
+
+    int xp;
+    int level;
+    int xpGained;
+    int toLvlUp;
+
     double gpa;
-    vector<Mentor> mentorList, unlockedMentors;
+
+    std::vector<Mentor> mentorList;
+    std::vector<Mentor> unlockedMentors;
+
 public:
-    Character(string);
-    void setGuild(string);
+    Character(const std::string &name);
+    void setGuild(const std::string &guildName);
     void setBg();
     void setIdentity();
     void setRace();
-    void boostStats(int,int,int);
+    void boostStats(int g, int l, int c);
     int getGrit();
     int getLogic();
     int getConfidence();
     void displayChar();
     void levelUp();
-    double getGPA();
     void takeDamage();
     void heal();
-    friend void plusXP(Character&);
+    friend void plusXP(Character &c);
     void saveCharacter();
     void loadCharacter();
     void getMentorList();
