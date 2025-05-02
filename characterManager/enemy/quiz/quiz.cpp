@@ -17,6 +17,6 @@ Quiz::Quiz()
     })
 {}
 
-void Quiz::attack() const {
+void Quiz::attack() {
     std::cout << "Quiz throws multiple-choice questions at you!\n";
 }

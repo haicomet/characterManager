@@ -3,8 +3,10 @@
 #include <memory>
 #include <map>
 #include <limits>
+#include <cstdlib> 
+#include <ctime>    
 
-// Existing headers
+// Headers
 #include "Mentor.h"
 #include "Character.h"
 #include "WebDev.h"
@@ -19,17 +21,17 @@
 
 using namespace std;
 
-
+// Forward declarations
 shared_ptr<Character> createPlayer();
 void startBattle(shared_ptr<Character> player);
 void viewMentors();
 void askMentor();
 void checkStats(shared_ptr<Character> player);
 
-
+// Load mentors
 vector<Mentor> mentors = loadMentors();
 
-//main menu
+// Main game menu
 void showMainMenu(shared_ptr<Character> player) {
     int choice;
     do {
@@ -42,7 +44,6 @@ void showMainMenu(shared_ptr<Character> player) {
              << "5. Return to Character Creation\n"
              << "6. Quit\n"
              << ">> ";
-
         cin >> choice;
         system("clear");
 
@@ -51,8 +52,12 @@ void showMainMenu(shared_ptr<Character> player) {
                 if (player) startBattle(player);
                 else cout << "Create a character first!\n";
                 break;
-            case 2: viewMentors(); break;
-            case 3: askMentor(); break;
+            case 2:
+                viewMentors();
+                break;
+            case 3:
+                askMentor();
+                break;
             case 4:
                 if (player) checkStats(player);
                 else cout << "No character created yet!\n";
@@ -66,39 +71,46 @@ void showMainMenu(shared_ptr<Character> player) {
             default:
                 cout << "Invalid choice!\n";
         }
+
         cout << "\nPress Enter to continue...";
-        cin.ignore();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.get();
     } while (true);
 }
 
-//Battle System
+// Battle system
 void startBattle(shared_ptr<Character> player) {
-    cout << "=== BATTLE CHALLENGE ===" << endl;
+    cout << "=== BATTLE CHALLENGE ===\n";
 
+    // Create enemy list
     vector<unique_ptr<Enemy>> enemies;
     enemies.push_back(make_unique<Quiz>());
     enemies.push_back(make_unique<Midterm>());
     enemies.push_back(make_unique<ImpostorSyndrome>());
+    enemies.push_back(make_unique<FinalExam>());
 
-    auto& enemy = enemies[rand() % enemies.size()];
+    // Pick a random enemy
+    size_t idx = static_cast<size_t>(rand() % enemies.size());
+    unique_ptr<Enemy>& enemy = enemies[idx];
 
     cout << "Challenge: " << enemy->getName() << "!\n";
 
+    // Flush input and run the puzzle
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     enemy->generatePuzzle();
 
-    
     cout << "\nResult: You survived the challenge!\n";
 }
 
+// Show all mentors
 void viewMentors() {
     cout << "=== MENTORS ===\n";
-    for (auto& mentor : mentors) {
+    for (Mentor& mentor : mentors) {
         mentor.displayBio();
     }
 }
 
+// Ask a mentor for a hint
 void askMentor() {
     if (mentors.empty()) {
         cout << "No mentors available yet!\n";
@@ -107,13 +119,15 @@ void askMentor() {
     mentors[0].displayHint();
 }
 
+// Display player stats
 void checkStats(shared_ptr<Character> player) {
     cout << "=== PLAYER STATS ===\n";
     player->displayChar();
 }
 
-
 int main() {
+    srand(static_cast<unsigned>(time(nullptr)));
+
     shared_ptr<Character> player = nullptr;
     int click;
 
@@ -139,24 +153,30 @@ int main() {
             default:
                 cout << "Invalid choice!\n";
         }
-        cin.ignore();
+
         cout << "\nPress Enter to continue...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.get();
     } while (true);
 }
-shared_ptr<Character> createPlayer(){
+
+// Character creation
+shared_ptr<Character> createPlayer() {
     string name;
     int ch;
     shared_ptr<Character> player;
 
     cout << "Enter name: ";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    getline(cin,name);
+    getline(cin, name);
 
-    cout << "\nTech area of interest: \n"
-    << "1. Cyber\n2. WebDev\n3. GameDev\n";
+    cout << "\nTech area of interest:\n"
+         << "1. Cyber\n"
+         << "2. WebDev\n"
+         << "3. GameDev\n"
+         << ">> ";
     cin >> ch;
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     switch (ch) {
         case 1:
@@ -173,6 +193,7 @@ shared_ptr<Character> createPlayer(){
             player = make_shared<WebDev>(name);
             break;
     }
+
     player->setBg();
     player->setIdentity();
     player->setRace();

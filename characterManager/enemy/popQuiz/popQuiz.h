@@ -6,7 +6,7 @@
 class PopQuiz : public Enemy {
 public:
     PopQuiz();
-    void attack() const override;
+    void attack() ;
 };
 
 #endif

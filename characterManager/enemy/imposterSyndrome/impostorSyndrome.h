@@ -6,7 +6,7 @@
 class ImpostorSyndrome : public Enemy {
 public:
     ImpostorSyndrome();
-    void attack() const override;
+    void attack();
 };
 
 #endif 

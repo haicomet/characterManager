@@ -2,46 +2,60 @@
 #include <iostream>
 #include <random>
 #include <cstdlib>
-using namespace std;
 
-Enemy::Enemy(const string &n, int hp, int diff,
-             const vector<pair<string, string>> &p)
-    : name(n), health(hp), difficulty(diff), puzzles(p)
+Enemy::Enemy(const std::string &n,
+             int hp,
+             int diff,
+             const std::vector<std::pair<std::string,std::string>> &p)
+  : name(n), health(hp), difficulty(diff), puzzles(p)
 {
 }
 
-void Enemy::attack() const
+void Enemy::attack()
 {
 }
 
-void Enemy::generatePuzzle() const
+void Enemy::generatePuzzle()
 {
-    int randomIndex = rand() % puzzles.size();
-    auto [question, answer] = puzzles[randomIndex];
+    int randomIndex = rand() % static_cast<int>(puzzles.size());
 
-    cout << name << " asks:\n"
-         << question << "\nYour answer: ";
+    std::pair<std::string,std::string> qa = puzzles[randomIndex];
+    std::string question = qa.first;
+    std::string answer   = qa.second;
 
-    string response;
-    getline(cin, response);
+    std::cout << name << " asks:\n"
+              << question << "\nYour answer: ";
+
+    std::string response;
+    std::getline(std::cin, response);
 
     if (response == answer)
-        cout << "Correct! You deal extra damage.\n";
+        std::cout << "Correct! You deal extra damage.\n";
     else
-        cout << "Wrong! The right answer was “"
-             << answer << "”.\n";
+        std::cout << "Wrong! The right answer was “" << answer << "”.\n";
 }
 
 void Enemy::takeDamage(int damage)
 {
     health -= damage;
-    cout << name << " took " << damage << " damage! ";
+    std::cout << name << " took " << damage << " damage! ";
     if (health <= 0)
-        cout << name << " was defeated!\n";
+        std::cout << name << " was defeated!\n";
     else
-        cout << "Remaining health: " << health << "\n";
+        std::cout << "Remaining health: " << health << "\n";
 }
 
-bool Enemy::isDefeated() const { return health <= 0; }
-string Enemy::getName() const { return name; }
-int Enemy::getDifficulty() const { return difficulty; }
+bool Enemy::isDefeated()
+{
+    return health <= 0;
+}
+
+std::string Enemy::getName()
+{
+    return name;
+}
+
+int Enemy::getDifficulty()
+{
+    return difficulty;
+}

@@ -11,6 +11,6 @@ PopQuiz::PopQuiz()
     })
 {}
 
-void PopQuiz::attack() const {
+void PopQuiz::attack() {
     std::cout << "Pop Quiz ambushes you with true/false questions!\n";
 }

@@ -10,22 +10,22 @@ protected:
     std::string name;
     int health;
     int difficulty;
-
     std::vector<std::pair<std::string,std::string>> puzzles;
 
 public:
-    Enemy(const std::string& name, int health, int difficulty,
+    Enemy(const std::string& name,
+          int health,
+          int difficulty,
           const std::vector<std::pair<std::string,std::string>>& puzzles);
+
     virtual ~Enemy() = default;
 
-    virtual void attack() const = 0;
-
-    virtual void generatePuzzle() const;
-
+    virtual void attack() = 0;
+    virtual void generatePuzzle();
     void takeDamage(int damage);
-    bool isDefeated() const;
-    std::string getName() const;
-    int getDifficulty() const;
+    bool isDefeated();
+    std::string getName();
+    int getDifficulty();
 };
 
-#endif
+#endif 

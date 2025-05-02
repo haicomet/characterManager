@@ -6,7 +6,7 @@
 class Midterm : public Enemy {
 public:
     Midterm();
-    void attack() const override;
+    void attack();
 };
 
 #endif

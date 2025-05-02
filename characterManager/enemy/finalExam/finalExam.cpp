@@ -17,6 +17,6 @@ FinalExam::FinalExam()
     })
 {}
 
-void FinalExam::attack() const {
+void FinalExam::attack() {
     std::cout << "Final Exam unleashes a brutal problem set!\n";
 }

@@ -6,7 +6,7 @@
 class Quiz : public Enemy {
 public:
     Quiz();
-    void attack() const override;
+    void attack();
 };
 
 #endif 

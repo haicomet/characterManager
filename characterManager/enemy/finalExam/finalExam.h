@@ -6,7 +6,7 @@
 class FinalExam : public Enemy {
 public:
     FinalExam();
-    void attack() const override;
+    void attack();
 };
 
 #endif 

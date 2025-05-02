@@ -11,6 +11,6 @@ Midterm::Midterm()
     })
 {}
 
-void Midterm::attack() const {
+void Midterm::attack() {
     std::cout << "Midterm hits you with an essay question!\n";
 }

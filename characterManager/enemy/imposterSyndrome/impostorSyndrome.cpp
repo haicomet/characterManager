@@ -17,6 +17,6 @@ ImpostorSyndrome::ImpostorSyndrome()
     })
 {}
 
-void ImpostorSyndrome::attack() const {
+void ImpostorSyndrome::attack() {
     std::cout << "Impostor Syndrome drains your confidence!\n";
 }
