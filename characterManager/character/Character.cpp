@@ -121,6 +121,7 @@ void Character::setRace() {
             break;
     }
 }
+void Character::setConfidence(int c){confidence = c;}
 
 void Character::boostStats(int g, int l, int c) {
     grit += g;
@@ -222,20 +223,23 @@ void Character::loadCharacter() {
     inFile >> grit >> logic >> confidence >> gpa;
     inFile >> xp >> level >> xpGained >> toLvlUp;
     inFile.close();
-    std::cout << "Character loaded...\n";
+    std::cout << "Character loaded successfully. Welcome back!\n";
+    displayChar();
 }
-void Character::getMentorList() {
-    mentorList = loadMentors();
+std::vector<std::shared_ptr<Mentor>> Character::allMentors;
+void Character::loadAllMentors() {
+    allMentors = loadMentors();
 }
 
 void Character::unlockMentor() {
-    if (level < mentorList.size()) {
-        unlockedMentors.push_back(mentorList[level]);
+    if (level < allMentors.size()) {
+        unlockedMentors.push_back(allMentors[level]);
+        cout << "Unlocked mentor: " << allMentors[level]->getName() << "!\n";
+    }else{
+        cout << "No more mentors to unlock!\n";
     }
 }
 
-void Character::displayUnlockedMentors() {
-    for (Mentor &mentor : unlockedMentors) {
-        mentor.displayBio();
-    }
+const std::vector<std::shared_ptr<Mentor>>& Character::getUnlockedMentors() const {
+    return unlockedMentors;
 }

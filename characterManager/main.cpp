@@ -25,8 +25,6 @@ void viewMentors();
 void askMentor();
 void checkStats(shared_ptr<Character> player);
 
-vector<Mentor> mentors = loadMentors();
-
 void showMainMenu(shared_ptr<Character> player) {
     int choice;
     do {
@@ -95,19 +93,28 @@ void startBattle(shared_ptr<Character> player) {
     cout << "\nResult: You survived the challenge!\n";
 }
 
-void viewMentors() {
+void viewMentors(const Character& player) {
     cout << "=== MENTORS ===\n";
-    for (Mentor& mentor : mentors) {
-        mentor.displayBio();
-    }
+    const auto& unlocked = player.getUnlockedMentors();
+    if (unlocked.empty()) {
+            cout << "No mentors available yet!\n";
+        } else {
+            for (const auto& mentor : unlocked) {
+                mentor->displayBio();
+            }
+        }
 }
 
-void askMentor() {
-    if (mentors.empty()) {
-        cout << "No mentors available yet!\n";
+void askMentor(Character& player) {
+    const auto& unlocked = player.getUnlockedMentors();
+    if (unlocked.empty()) {
+        cout << "Level up to unlock mentors!\n";
         return;
     }
-    mentors[0].displayHint();
+    auto& latestMentor = unlocked.back();
+    cout << latestMentor->getName() << "'s advice:\n";
+    latestMentor->displayHint();
+    player.setConfidence(player.getConfidence()+1);
 }
 
 void checkStats(shared_ptr<Character> player) {
@@ -116,6 +123,7 @@ void checkStats(shared_ptr<Character> player) {
 }
 
 int main() {
+    Character::loadAllMentors();
     srand(static_cast<unsigned>(time(nullptr)));
 
     shared_ptr<Character> player = nullptr;
@@ -125,8 +133,9 @@ int main() {
         system("clear");
         cout << "-- MAIN MENU --\n"
              << "1. Create New Player\n"
-             << "2. Start Game\n"
-             << "3. Quit\n"
+             << "2. Returning Player\n"
+             << "3. Start Game\n"
+             << "4. Quit\n"
              << ">> ";
         cin >> click;
 
@@ -135,10 +144,12 @@ int main() {
                 player = createPlayer();
                 break;
             case 2:
+                player->loadCharacter();
+            case 3:
                 if (player) showMainMenu(player);
                 else cout << "Create a character first!\n";
                 break;
-            case 3:
+            case 4:
                 return 0;
             default:
                 cout << "Invalid choice!\n";
@@ -187,6 +198,7 @@ shared_ptr<Character> createPlayer() {
     player->setIdentity();
     player->setRace();
     player->displayChar();
+    player->saveCharacter();
 
     return player;
 }

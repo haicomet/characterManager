@@ -43,9 +43,9 @@ void Mentor::displayHint()
     std::cout << name << "'s Advice: " << hint << "\n";
 }
 
-std::vector<Mentor> loadMentors()
+std::vector<shared_ptr<Mentor>> loadMentors()
 {
-    std::vector<Mentor> mentors;
+    vector<shared_ptr<Mentor>> mentors;
     std::ifstream file("mentors.txt");
 
     if (!file.is_open())
@@ -54,16 +54,17 @@ std::vector<Mentor> loadMentors()
         return mentors;
     }
 
-    Mentor mentor;
-    while (std::getline(file, mentor.guild))
+    std:: string guild, name, bio,hint;
+    while (std::getline(file, guild))
     {
-        std::getline(file, mentor.name);
-        std::getline(file, mentor.bio);
-        std::getline(file, mentor.hint);
+        std::getline(file, name);
+        std::getline(file, bio);
+        std::getline(file, hint);
 
         std::string emptyLine;
         std::getline(file, emptyLine);
 
+        auto mentor = std::make_shared<Mentor>(name, guild, bio, hint);
         mentors.push_back(mentor);
     }
 

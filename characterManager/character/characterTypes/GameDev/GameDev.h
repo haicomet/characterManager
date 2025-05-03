@@ -4,7 +4,7 @@
 
 class GameDev : public Character {
 public:
-    GameDev(string);
+    GameDev(std::string);
 };
 
 #endif

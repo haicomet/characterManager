@@ -1,9 +1,10 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
-
 #include <string>
 #include <vector>
+#include <memory>
 #include "Mentor.h"
+using namespace std;
 
 class Character {
 private:
@@ -24,8 +25,8 @@ private:
 
     double gpa;
 
-    std::vector<Mentor> mentorList;
-    std::vector<Mentor> unlockedMentors;
+    static std::vector<std::shared_ptr<Mentor>> allMentors;
+    std::vector<std::shared_ptr<Mentor>> unlockedMentors;
 
 public:
     Character(const std::string &name);
@@ -34,6 +35,7 @@ public:
     void setIdentity();
     void setRace();
     void boostStats(int g, int l, int c);
+    void setConfidence(int c);
     int getGrit();
     int getLogic();
     int getConfidence();
@@ -44,9 +46,9 @@ public:
     friend void plusXP(Character &c);
     void saveCharacter();
     void loadCharacter();
-    void getMentorList();
+    static void loadAllMentors();
     void unlockMentor();
-    void displayUnlockedMentors();
+    const std::vector<std::shared_ptr<Mentor>>& getUnlockedMentors() const;
 };
 
 #endif

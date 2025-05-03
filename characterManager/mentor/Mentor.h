@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
-
+#include <memory>
 using namespace std;
 
 class Mentor
@@ -27,9 +27,9 @@ public:
     void displayBio();
     void displayHint();
 
-    friend vector<Mentor> loadMentors();
+    friend vector<shared_ptr<Mentor>> loadMentors();
 };
 
-vector<Mentor> loadMentors();
+vector<shared_ptr<Mentor>> loadMentors();
 
 #endif
