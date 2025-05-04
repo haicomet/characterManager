@@ -88,17 +88,10 @@ void startBattle(shared_ptr<Character> player) {
     cout << "Challenge: " << enemy->getName() << "!\n";
 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    enemy->generatePuzzle();
+    enemy->generatePuzzle(*player);
 
     cout << "\nResult: You survived the challenge!\n";
 }
-
-// ur error was that in the top declaration u didnt specify the parameter in the () ;
-// u said in the top void viewMentors();
-// instead of void viewMentors(const Character& player);
-// and so on so it works now <3 <3
-//there is a bug where if you press enter when ur supposed to put data in it lowkey crashes so ill fix that later. add it to the google docs
-// lmk if there are any more bugs <3 <3
 
 
 void viewMentors(const Character& player) {

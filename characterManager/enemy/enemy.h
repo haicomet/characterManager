@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include "Character.h"
 
 class Enemy {
 protected:
@@ -21,8 +22,8 @@ public:
     virtual ~Enemy() = default;
 
     virtual void attack() = 0;
-    virtual void generatePuzzle();
-    void takeDamage(int damage);
+    virtual void generatePuzzle(Character& player);
+    void takeDamage(int damage, Character& player);
     bool isDefeated();
     std::string getName();
     int getDifficulty();

@@ -147,6 +147,7 @@ void Character::displayChar() {
     std::cout << "Confidence:  \t\t " << confidence << std::endl;
     std::cout << "Logic:       \t\t " << logic << std::endl;
     std::cout << "GPA:         \t\t " << gpa << std::endl;
+    std::cout << "XP:          \t\t " << xp << std::endl;
 }
 
 void Character::takeDamage() {
@@ -176,12 +177,12 @@ void plusXP(Character &c) {
         c.toLvlUp += 2;
         c.boostStats(2, 2, 1);
         std::cout << "Stats increased!"
-                  << "\nGrit:\t" << c.grit
+                  << "\nPerseverance:\t" << c.grit
                   << "\nLogic:\t" << c.logic
                   << "\nConfidence:\t" << c.confidence
                   << std::endl;
-        std::cout << "Current XP: " << c.xp
-                  << " \t needed for next level up!\n";
+        std::cout << "Current XP: " << c.xp <<"\t"
+        << c.toLvlUp << " needed for next level up!\n";
     }
 }
 

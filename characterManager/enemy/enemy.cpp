@@ -15,7 +15,7 @@ void Enemy::attack()
 {
 }
 
-void Enemy::generatePuzzle()
+void Enemy::generatePuzzle(Character& player)
 {
     int randomIndex = rand() % static_cast<int>(puzzles.size());
 
@@ -29,18 +29,25 @@ void Enemy::generatePuzzle()
     std::string response;
     std::getline(std::cin, response);
 
-    if (response == answer)
+    if (response == answer){
         std::cout << "Correct! You deal extra damage.\n";
-    else
+        player.heal();
+        plusXP(player);
+    }
+    else{
         std::cout << "Wrong! The right answer was “" << answer << "”.\n";
+        player.takeDamage();
+    }
 }
 
-void Enemy::takeDamage(int damage)
+void Enemy::takeDamage(int damage,Character& player)
 {
     health -= damage;
     std::cout << name << " took " << damage << " damage! ";
-    if (health <= 0)
+    if (health <= 0){
         std::cout << name << " was defeated!\n";
+        plusXP(player);
+    }
     else
         std::cout << "Remaining health: " << health << "\n";
 }
