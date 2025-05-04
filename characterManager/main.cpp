@@ -32,7 +32,7 @@ void showMainMenu(shared_ptr<Character> player) {
         cout << "=== STEM Quest ===\n"
              << "1. Start Battle\n"
              << "2. View Mentors\n"
-             << "3. Ask Mentor for Hint\n"
+             << "3. Ask Mentor for Advice\n"
              << "4. Check Stats\n"
              << "5. Return to Character Creation\n"
              << "6. Quit\n"
@@ -113,7 +113,6 @@ void askMentor(Character& player) {
         return;
     }
     auto& latestMentor = unlocked.back();
-    cout << latestMentor->getName() << "'s advice:\n";
     latestMentor->displayHint();
     player.setConfidence(player.getConfidence()+1);
 }
@@ -146,6 +145,7 @@ int main() {
                 break;
             case 2:
                 player->loadCharacter();
+                break;
             case 3:
                 if (player) showMainMenu(player);
                 else cout << "Create a character first!\n";

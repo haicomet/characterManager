@@ -166,6 +166,7 @@ void Character::heal() {
 
 void Character::levelUp() {
     level++;
+    unlockMentor();
     std::cout << "You've leveled up to: LEVEL " << level << std::endl;
 }
 
@@ -233,9 +234,9 @@ void Character::loadAllMentors() {
 }
 
 void Character::unlockMentor() {
-    if (level < allMentors.size()) {
-        unlockedMentors.push_back(allMentors[level]);
-        cout << "Unlocked mentor: " << allMentors[level]->getName() << "!\n";
+    if (level > 0 && (level - 1) < allMentors.size()) {
+        unlockedMentors.push_back(allMentors[level - 1]);
+        cout << "Unlocked mentor: " << allMentors[level - 1]->getName() << "!\n";
     }else{
         cout << "No more mentors to unlock!\n";
     }
