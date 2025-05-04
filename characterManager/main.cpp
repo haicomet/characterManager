@@ -21,8 +21,8 @@ using namespace std;
 
 shared_ptr<Character> createPlayer();
 void startBattle(shared_ptr<Character> player);
-void viewMentors();
-void askMentor();
+void viewMentors(const Character& player);
+void askMentor(Character& player);
 void checkStats(shared_ptr<Character> player);
 
 void showMainMenu(shared_ptr<Character> player) {
@@ -46,10 +46,10 @@ void showMainMenu(shared_ptr<Character> player) {
                 else cout << "Create a character first!\n";
                 break;
             case 2:
-                viewMentors();
+                viewMentors(*player);
                 break;
             case 3:
-                askMentor();
+                askMentor(*player);
                 break;
             case 4:
                 if (player) checkStats(player);
@@ -92,6 +92,14 @@ void startBattle(shared_ptr<Character> player) {
 
     cout << "\nResult: You survived the challenge!\n";
 }
+
+// ur error was that in the top declaration u didnt specify the parameter in the () ;
+// u said in the top void viewMentors();
+// instead of void viewMentors(const Character& player);
+// and so on so it works now <3 <3
+//there is a bug where if you press enter when ur supposed to put data in it lowkey crashes so ill fix that later. add it to the google docs
+// lmk if there are any more bugs <3 <3
+
 
 void viewMentors(const Character& player) {
     cout << "=== MENTORS ===\n";
