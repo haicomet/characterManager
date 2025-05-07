@@ -132,18 +132,23 @@ void Character::heal() {
 
 void plusXP(Character &c) {
     c.xp += c.xpGained;
+    cout << "Gained " << c.xpGained
+         << " XP! Current XP: " << c.xp
+         << " / " << c.toLvlUp << "\n";
+
     while (c.xp >= c.toLvlUp) {
         c.xp -= c.toLvlUp;
         c.levelUp();
         c.toLvlUp += 2;
-        c.boostStats(2, 2, 1);
+        c.boostStats(2,2,1);
         cout << "Stats increased!\n"
-             << "Grit: " << c.grit << "\n"
-             << "Logic: " << c.logic << "\n"
-             << "Confidence: " << c.confidence << "\n";
-        cout << "Current XP: " << c.xp
-             << " needed for next level up!\n";
+             << "  Grit:       " << c.grit     << "\n"
+             << "  Logic:      " << c.logic    << "\n"
+             << "  Confidence: " << c.confidence << "\n"
+             << "Current XP: " << c.xp
+             << " / " << c.toLvlUp << "\n";
     }
+
     c.unlockMentor();
 }
 
@@ -192,7 +197,7 @@ void Character::loadAllMentors() {
 }
 
 void Character::unlockMentor() {
-    static const vector<int> xpReq = {5, 10, 15, 20, 25};
+    static const vector<int> xpReq = {1, 2, 3, 4, 5};
     unlockedMentors.clear();
     size_t count = min(allMentors.size(), xpReq.size());
     for (size_t i = 0; i < count; ++i) {
