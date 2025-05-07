@@ -21,8 +21,10 @@ using namespace std;
 
 shared_ptr<Character> createPlayer();
 void startBattle(shared_ptr<Character> player);
-void viewMentors(const Character& player);
-void askMentor(Character& player);
+
+void viewMentors(shared_ptr<Character> player);
+void askMentor(shared_ptr<Character> player);
+
 void checkStats(shared_ptr<Character> player);
 
 void showMainMenu(shared_ptr<Character> player) {
@@ -46,10 +48,10 @@ void showMainMenu(shared_ptr<Character> player) {
                 else cout << "Create a character first!\n";
                 break;
             case 2:
-                viewMentors(*player);
+                viewMentors(player);
                 break;
             case 3:
-                askMentor(*player);
+                askMentor(player);
                 break;
             case 4:
                 if (player) checkStats(player);
@@ -91,31 +93,45 @@ void startBattle(shared_ptr<Character> player) {
     enemy->generatePuzzle(*player);
 
     cout << "\nResult: You survived the challenge!\n";
+    plusXP(*player);
 }
 
-
-void viewMentors(const Character& player) {
+void viewMentors(shared_ptr<Character> player) {
     cout << "=== MENTORS ===\n";
-    const auto& unlocked = player.getUnlockedMentors();
+    const vector<shared_ptr<Mentor>>& unlocked = player->getUnlockedMentors();
     if (unlocked.empty()) {
-            cout << "No mentors available yet!\n";
-        } else {
-            for (const auto& mentor : unlocked) {
-                mentor->displayBio();
-            }
-        }
+        cout << "None yet! Earn more XP.\n";
+        return;
+    }
+    for (size_t i = 0; i < unlocked.size(); ++i) {
+        shared_ptr<Mentor> mentor = unlocked[i];
+        mentor->displayBio();
+    }
 }
 
-void askMentor(Character& player) {
-    const auto& unlocked = player.getUnlockedMentors();
+void askMentor(shared_ptr<Character> player) {
+    const vector<shared_ptr<Mentor>>& unlocked = player->getUnlockedMentors();
     if (unlocked.empty()) {
         cout << "Level up to unlock mentors!\n";
         return;
     }
-    auto& latestMentor = unlocked.back();
-    latestMentor->displayHint();
-    player.setConfidence(player.getConfidence()+1);
+    cout << "Choose a mentor for advice:\n";
+    for (size_t i = 0; i < unlocked.size(); ++i) {
+        cout << (i + 1) << ". " << unlocked[i]->getName() << "\n";
+    }
+    cout << ">> ";
+    int sel;
+    cin >> sel;
+    if (sel < 1 || sel > static_cast<int>(unlocked.size())) {
+        cout << "Invalid choice.\n";
+    } else {
+        shared_ptr<Mentor> mentor = unlocked[sel - 1];
+        mentor->displayHint();
+        player->setConfidence(player->getConfidence() + 1);
+    }
 }
+
+  
 
 void checkStats(shared_ptr<Character> player) {
     cout << "=== PLAYER STATS ===\n";

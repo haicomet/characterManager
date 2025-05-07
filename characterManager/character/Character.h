@@ -1,18 +1,20 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
+
 #include <string>
 #include <vector>
 #include <memory>
 #include "Mentor.h"
+
 using namespace std;
 
 class Character {
 private:
-    std::string name;
-    std::string guild;
-    std::string background;
-    std::string identity;
-    std::string race;
+    string name;
+    string guild;
+    string background;
+    string identity;
+    string race;
 
     int grit;
     int logic;
@@ -25,12 +27,12 @@ private:
 
     double gpa;
 
-    static std::vector<std::shared_ptr<Mentor>> allMentors;
-    std::vector<std::shared_ptr<Mentor>> unlockedMentors;
+    static vector<shared_ptr<Mentor>> allMentors;
+    vector<shared_ptr<Mentor>> unlockedMentors;
 
 public:
-    Character(const std::string &name);
-    void setGuild(const std::string &guildName);
+    Character(const string &name);
+    void setGuild(const string &guildName);
     void setBg();
     void setIdentity();
     void setRace();
@@ -48,7 +50,7 @@ public:
     void loadCharacter();
     static void loadAllMentors();
     void unlockMentor();
-    const std::vector<std::shared_ptr<Mentor>>& getUnlockedMentors() const;
+    const vector<shared_ptr<Mentor>>& getUnlockedMentors() const;
 };
 
-#endif
+#endif 

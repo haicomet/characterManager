@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include <utility>
 #include "Character.h"
 
 using namespace std;
@@ -16,19 +15,22 @@ protected:
     vector<pair<string,string>> puzzles;
 
 public:
-    Enemy(const string& name,
-          int health,
-          int difficulty,
-          const vector<pair<string,string>>& puzzles);
+    Enemy(const string &n,
+          int hp,
+          int diff,
+          const vector<pair<string,string>> &p);
 
     virtual ~Enemy() = default;
 
-    virtual void attack() = 0;
-    virtual void generatePuzzle(Character& player);
-    void takeDamage(int damage, Character& player);
+    virtual void attack();
+
+    virtual void generatePuzzle(Character &player);
+
+    void takeDamage(int damage, Character &player);
+
     bool isDefeated();
     string getName();
     int getDifficulty();
 };
 
-#endif 
+#endif
