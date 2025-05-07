@@ -160,6 +160,10 @@ int main() {
                 player = createPlayer();
                 break;
             case 2:
+                if (!player) 
+                {
+                    player = make_shared<Character> (string());
+                }
                 player->loadCharacter();
                 break;
             case 3:
