@@ -3,10 +3,13 @@
 
 #include "enemy.h"
 
+using namespace std;
+
 class Midterm : public Enemy {
 public:
     Midterm();
-    void attack();
+    void attack() override;
+    void generatePuzzle(Character &player) override;
 };
 
 #endif

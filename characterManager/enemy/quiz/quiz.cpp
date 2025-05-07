@@ -20,3 +20,7 @@ Quiz::Quiz()
 void Quiz::attack() {
     std::cout << "Quiz throws multiple-choice questions at you!\n";
 }
+
+void Quiz::generatePuzzle(Character &player) {
+    Enemy::generatePuzzle(player);
+}

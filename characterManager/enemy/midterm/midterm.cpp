@@ -14,3 +14,7 @@ Midterm::Midterm()
 void Midterm::attack() {
     std::cout << "Midterm hits you with an essay question!\n";
 }
+
+void Midterm::generatePuzzle(Character &player) {
+    Enemy::generatePuzzle(player);
+}
