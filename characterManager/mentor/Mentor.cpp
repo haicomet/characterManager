@@ -4,67 +4,69 @@
 #include <vector>
 #include <string>
 
+using namespace std;
+
 Mentor::Mentor() : name(), guild(), bio(), hint() {}
 
 Mentor::Mentor(
-    const std::string &name,
-    const std::string &guild,
-    const std::string &bio,
-    const std::string &hint) : name(name), guild(guild), bio(bio), hint(hint) {}
+    const string &name,
+    const string &guild,
+    const string &bio,
+    const string &hint) : name(name), guild(guild), bio(bio), hint(hint) {}
 
-std::string Mentor::getName()
+string Mentor::getName()
 {
     return name;
 }
 
-std::string Mentor::getGuild()
+string Mentor::getGuild()
 {
     return guild;
 }
 
-std::string Mentor::getBio()
+string Mentor::getBio()
 {
     return bio;
 }
 
-std::string Mentor::getHint()
+string Mentor::getHint()
 {
     return hint;
 }
 
 void Mentor::displayBio()
 {
-    std::cout << "=== " << name << " (" << guild << ") ===\n"
+    cout << "=== " << name << " (" << guild << ") ===\n"
               << bio << "\n\n";
 }
 
 void Mentor::displayHint()
 {
-    std::cout << name << "'s Advice: " << hint << "\n";
+    cout << name << "'s Advice: " << hint << "\n";
 }
 
-std::vector<shared_ptr<Mentor>> loadMentors()
+vector<shared_ptr<Mentor>> loadMentors()
 {
     vector<shared_ptr<Mentor>> mentors;
-    std::ifstream file("mentors.txt");
+    ifstream file("mentors.txt");
 
     if (!file.is_open())
     {
-        std::cerr << "Error: Could not open mentors.txt" << std::endl;
+        cerr << "Error: Could not open mentors.txt" << endl;
         return mentors;
     }
 
-    std:: string guild, name, bio,hint;
-    while (std::getline(file, guild))
+     string guild, name, bio,hint;
+    while (getline(file, guild))
     {
-        std::getline(file, name);
-        std::getline(file, bio);
-        std::getline(file, hint);
+        getline(file, name);
+        getline(file, bio);
+        getline(file, hint);
 
-        std::string emptyLine;
-        std::getline(file, emptyLine);
+        string emptyLine;
+        getline(file, emptyLine);
 
-        auto mentor = std::make_shared<Mentor>(name, guild, bio, hint);
+        auto mentor = make_shared<Mentor>(name, guild, bio, hint);
         mentors.push_back(mentor);
     }
 

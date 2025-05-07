@@ -6,18 +6,20 @@
 #include <utility>
 #include "Character.h"
 
+using namespace std;
+
 class Enemy {
 protected:
-    std::string name;
+    string name;
     int health;
     int difficulty;
-    std::vector<std::pair<std::string,std::string>> puzzles;
+    vector<pair<string,string>> puzzles;
 
 public:
-    Enemy(const std::string& name,
+    Enemy(const string& name,
           int health,
           int difficulty,
-          const std::vector<std::pair<std::string,std::string>>& puzzles);
+          const vector<pair<string,string>>& puzzles);
 
     virtual ~Enemy() = default;
 
@@ -25,7 +27,7 @@ public:
     virtual void generatePuzzle(Character& player);
     void takeDamage(int damage, Character& player);
     bool isDefeated();
-    std::string getName();
+    string getName();
     int getDifficulty();
 };
 
