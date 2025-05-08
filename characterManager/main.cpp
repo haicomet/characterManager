@@ -160,7 +160,7 @@ int main() {
                 player = createPlayer();
                 break;
             case 2:
-                if (!player) 
+                if (!player)
                 {
                     player = make_shared<Character> (string());
                 }

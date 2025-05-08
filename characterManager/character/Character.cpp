@@ -110,7 +110,8 @@ void Character::displayChar() {
          << "Perseverance:    " << grit << "\n"
          << "Confidence:      " << confidence << "\n"
          << "Logic:           " << logic << "\n"
-         << "GPA:             " << gpa << "\n";
+         << "GPA:             " << gpa << "\n"
+         << "Level:           " << level << "\n";
 }
 
 void Character::levelUp() {
@@ -197,16 +198,17 @@ void Character::loadAllMentors() {
 }
 
 void Character::unlockMentor() {
-    static const vector<int> xpReq = {1, 2, 3, 4, 5};
-    unlockedMentors.clear();
-    size_t count = min(allMentors.size(), xpReq.size());
-    for (size_t i = 0; i < count; ++i) {
-        if (xp >= xpReq[i]) {
-            unlockedMentors.push_back(allMentors[i]);
-        }
-    }
-}
-
+    if (level < allMentors.size()) {
+        unlockedMentors.push_back(allMentors[level]);
+        cout << "Unlocked mentor: " << allMentors[level]->getName() << "!\n";
+        if (level > 0 && (level - 1) < allMentors.size()) {
+            unlockedMentors.push_back(allMentors[level - 1]);
+            cout << "Unlocked mentor: " << allMentors[level - 1]->getName() << "!\n";
+        }else{
+            cout << "No more mentors to unlock!\n";
+        }}
+}// fix and display stats
+        
 const vector<shared_ptr<Mentor>>& Character::getUnlockedMentors() const {
     return unlockedMentors;
 }
