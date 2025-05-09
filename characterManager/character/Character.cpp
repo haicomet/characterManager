@@ -190,7 +190,7 @@ void Character::loadCharacter() {
     inFile >> xp >> level >> xpGained >> toLvlUp;
     inFile.ignore(numeric_limits<streamsize>::max(), '\n');
     inFile.close();
-    
+
     unlockMentor(false);
     cout << "Character loaded...\n";
 }
@@ -201,18 +201,31 @@ void Character::loadAllMentors() {
 
 void Character::unlockMentor(bool showMessages) {
     if (level < allMentors.size()) {
-        unlockedMentors.push_back(allMentors[level]);
-        if (showMessages)
-            cout << "Unlocked mentor: " << allMentors[level]->getName() << "!\n";
+        shared_ptr<Mentor> mentorToUnlock = allMentors[level];
 
-        if (level > 0 && (level - 1) < allMentors.size()) {
-            unlockedMentors.push_back(allMentors[level - 1]);
-            if (showMessages)
-                cout << "Unlocked mentor: " << allMentors[level - 1]->getName() << "!\n";
-        } else{
-            if (showMessages)
+        bool alreadyUnlocked = false;
+        for (int i = 0; i < unlockedMentors.size(); ++i) {
+            if (unlockedMentors[i]->getName() == mentorToUnlock->getName()) {
+                alreadyUnlocked = true;
+                break;
+            }
+        }
+
+        if (!alreadyUnlocked) {
+            unlockedMentors.push_back(mentorToUnlock);
+            if (showMessages) {
+                cout << "Unlocked mentor: " << mentorToUnlock->getName() << "!\n";
+            }
+        } else {
+            if (showMessages) {
                 cout << "No more mentors to unlock!\n";
-        }}
+            }
+        }
+    } else {
+        if (showMessages) {
+            cout << "No more mentors to unlock!\n";
+        }
+    }
 }
         
 const vector<shared_ptr<Mentor>>& Character::getUnlockedMentors() const {

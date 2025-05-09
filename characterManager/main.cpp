@@ -21,10 +21,8 @@ using namespace std;
 
 shared_ptr<Character> createPlayer();
 void startBattle(shared_ptr<Character> player);
-
 void viewMentors(shared_ptr<Character> player);
 void askMentor(shared_ptr<Character> player);
-
 void checkStats(shared_ptr<Character> player);
 
 void showMainMenu(shared_ptr<Character> player) {
@@ -40,6 +38,7 @@ void showMainMenu(shared_ptr<Character> player) {
              << "6. Quit\n"
              << ">> ";
         cin >> choice;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         system("clear");
 
         switch (choice) {
@@ -68,7 +67,6 @@ void showMainMenu(shared_ptr<Character> player) {
         }
 
         cout << "\nPress Enter to continue...";
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.get();
     } while (true);
 }
@@ -122,6 +120,7 @@ void askMentor(shared_ptr<Character> player) {
     cout << ">> ";
     int sel;
     cin >> sel;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     if (sel < 1 || sel > static_cast<int>(unlocked.size())) {
         cout << "Invalid choice.\n";
     } else {
@@ -154,6 +153,8 @@ int main() {
              << "4. Quit\n"
              << ">> ";
         cin >> click;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 
         switch (click) {
             case 1:
@@ -177,7 +178,6 @@ int main() {
         }
 
         cout << "\nPress Enter to continue...";
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.get();
     } while (true);
 }
