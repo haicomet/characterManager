@@ -1,4 +1,5 @@
 #include "Mentor.h"
+#include "GeneralMentor.h"
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -66,7 +67,7 @@ vector<shared_ptr<Mentor>> loadMentors()
         string emptyLine;
         getline(file, emptyLine);
 
-        auto mentor = make_shared<Mentor>(name, guild, bio, hint);
+        shared_ptr<Mentor> mentor = shared_ptr<Mentor>(new GeneralMentor(name, guild, bio, hint));
         mentors.push_back(mentor);
     }
 

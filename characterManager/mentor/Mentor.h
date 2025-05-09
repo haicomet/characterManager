@@ -10,7 +10,7 @@ using namespace std;
 
 class Mentor
 {
-private:
+protected:
     string name;
     string guild;
     string bio;
@@ -28,7 +28,7 @@ public:
     void displayBio();
     void displayHint();
 
-    friend vector<shared_ptr<Mentor>> loadMentors();
+    virtual void displayHint() = 0;
 };
 
 vector<shared_ptr<Mentor>> loadMentors();
