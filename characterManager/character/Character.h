@@ -49,7 +49,7 @@ public:
     void saveCharacter();
     void loadCharacter();
     static void loadAllMentors();
-    void unlockMentor();
+    void unlockMentor(bool showMessages = true);
     const vector<shared_ptr<Mentor>>& getUnlockedMentors() const;
 };
 
