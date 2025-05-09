@@ -111,7 +111,8 @@ void Character::displayChar() {
          << "Confidence:      " << confidence << "\n"
          << "Logic:           " << logic << "\n"
          << "GPA:             " << gpa << "\n"
-         << "Level:           " << level << "\n";
+         << "Level:           " << level << "\n"
+         << "XP:              " << xp << "\n";
 }
 
 void Character::levelUp() {
