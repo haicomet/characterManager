@@ -153,9 +153,9 @@ void plusXP(Character &c) {
              << "  Confidence: " << c.confidence << "\n"
              << "Current XP: " << c.xp
              << " / " << c.toLvlUp << "\n";
+        
+        c.unlockMentor();
     }
-
-    c.unlockMentor();
 }
 
 void Character::saveCharacter() {

@@ -20,7 +20,7 @@
 using namespace std;
 
 shared_ptr<Character> createPlayer();
-bool startBattle(shared_ptr<Character> player);
+bool startBattle(shared_ptr<Character>& player);
 void viewMentors(shared_ptr<Character> player);
 void askMentor(shared_ptr<Character> player);
 void checkStats(shared_ptr<Character> player);
@@ -85,7 +85,7 @@ void showMainMenu(shared_ptr<Character> player)
     } while (true);
 }
 
-bool startBattle(shared_ptr<Character> player)
+bool startBattle(shared_ptr<Character>& player)
 {
     cout << "=== BATTLE CHALLENGE ===\n";
 
