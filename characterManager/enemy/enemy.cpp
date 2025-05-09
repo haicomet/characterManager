@@ -43,7 +43,7 @@ void Enemy::generatePuzzle(Character &player)
         }
         else
         {
-            cout << "Wrong! The right answer was “" << answer << "”.\n";
+            cout << "Wrong answer. Your GPA dropped!\n";
             player.takeDamage();
         }
         
