@@ -20,7 +20,7 @@
 using namespace std;
 
 shared_ptr<Character> createPlayer();
-void startBattle(shared_ptr<Character> player);
+bool startBattle(shared_ptr<Character> player);
 void viewMentors(shared_ptr<Character> player);
 void askMentor(shared_ptr<Character> player);
 void checkStats(shared_ptr<Character> player);
@@ -47,9 +47,16 @@ void showMainMenu(shared_ptr<Character> player)
         {
         case 1:
             if (player)
-                startBattle(player);
+            {
+                if (!startBattle(player))
+                {
+                    return;
+                }
+            }
             else
+            {
                 cout << "Create a character first!\n";
+            }
             break;
         case 2:
             viewMentors(player);
@@ -78,7 +85,7 @@ void showMainMenu(shared_ptr<Character> player)
     } while (true);
 }
 
-void startBattle(shared_ptr<Character> player)
+bool startBattle(shared_ptr<Character> player)
 {
     cout << "=== BATTLE CHALLENGE ===\n";
 
@@ -99,13 +106,13 @@ void startBattle(shared_ptr<Character> player)
 
     if (!survived)
     {
-        cout << "Returning to main menu...\n";
         player = nullptr;
-        return;
+        return false;
     }
 
     cout << "\nResult: You survived the challenge!\n";
     plusXP(*player);
+    return true;
 }
 
 void viewMentors(shared_ptr<Character> player)
@@ -159,16 +166,13 @@ void checkStats(shared_ptr<Character> player)
     player->displayChar();
 }
 
-int main()
-{
+int main() {
     Character::loadAllMentors();
     srand(static_cast<unsigned>(time(nullptr)));
 
     shared_ptr<Character> player = nullptr;
-    int click;
 
-    do
-    {
+    while (true) {
         system("clear");
         cout << "-- MAIN MENU --\n"
              << "1. Create New Player\n"
@@ -176,36 +180,39 @@ int main()
              << "3. Start Game\n"
              << "4. Quit\n"
              << ">> ";
+
+        int click;
         cin >> click;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        switch (click)
-        {
-        case 1:
-            player = createPlayer();
-            break;
-        case 2:
-            if (!player)
-            {
-                player = make_shared<Character>(string());
-            }
-            player->loadCharacter();
-            break;
-        case 3:
-            if (player)
-                showMainMenu(player);
-            else
-                cout << "Create a character first!\n";
-            break;
-        case 4:
-            return 0;
-        default:
-            cout << "Invalid choice!\n";
+        switch (click) {
+            case 1:
+                player = createPlayer();
+                break;
+            case 2:
+                if (!player) {
+                    player = make_shared<Character>(string());
+                }
+                player->loadCharacter();
+                break;
+            case 3:
+                if (player) {
+                    showMainMenu(player);
+                    // After showMainMenu returns, assume player failed
+                    player = nullptr;
+                } else {
+                    cout << "Create a character first!\n";
+                }
+                break;
+            case 4:
+                return 0;
+            default:
+                cout << "Invalid choice!\n";
         }
 
         cout << "\nPress Enter to continue...";
         cin.get();
-    } while (true);
+    }
 }
 
 shared_ptr<Character> createPlayer()
