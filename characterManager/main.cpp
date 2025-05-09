@@ -87,7 +87,6 @@ void startBattle(shared_ptr<Character> player) {
 
     cout << "Challenge: " << enemy->getName() << "!\n";
 
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     enemy->generatePuzzle(*player);
 
     cout << "\nResult: You survived the challenge!\n";
@@ -186,9 +185,7 @@ shared_ptr<Character> createPlayer() {
     string name;
     int ch;
     shared_ptr<Character> player;
-
     cout << "Enter name: ";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, name);
 
     cout << "\nTech area of interest:\n"
