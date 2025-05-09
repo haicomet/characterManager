@@ -235,3 +235,7 @@ void Character::unlockMentor(bool showMessages) {
 const vector<shared_ptr<Mentor>>& Character::getUnlockedMentors() const {
     return unlockedMentors;
 }
+
+double Character::getGPA() const {
+    return gpa;
+}

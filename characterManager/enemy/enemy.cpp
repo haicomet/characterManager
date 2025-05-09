@@ -2,14 +2,16 @@
 #include <iostream>
 #include <random>
 #include <cstdlib>
+#include <fstream>
+#include <cstdio>
 
 using namespace std;
 
 Enemy::Enemy(const string &n,
              int hp,
              int diff,
-             const vector<pair<string,string>> &p)
-  : name(n), health(hp), difficulty(diff), puzzles(p)
+             const vector<pair<string, string>> &p)
+    : name(n), health(hp), difficulty(diff), puzzles(p)
 {
 }
 
@@ -19,23 +21,43 @@ void Enemy::attack()
 
 void Enemy::generatePuzzle(Character &player)
 {
-    int randomIndex = rand() % static_cast<int>(puzzles.size());
-    pair<string,string> qa = puzzles[randomIndex];
-    string question = qa.first;
-    string answer   = qa.second;
+    while (true)
+    {
 
-    cout << name << " asks:\n"
-         << question << "\nYour answer: ";
+        int randomIndex = rand() % static_cast<int>(puzzles.size());
+        pair<string, string> qa = puzzles[randomIndex];
+        string question = qa.first;
+        string answer = qa.second;
 
-    string response;
-    getline(cin, response);
+        cout << name << " asks:\n"
+             << question << "\nYour answer: ";
 
-    if (response == answer) {
-        cout << "Correct! You deal extra damage.\n";
-        player.heal();
-    } else {
-        cout << "Wrong! The right answer was “" << answer << "”.\n";
-        player.takeDamage();
+        string response;
+        getline(cin, response);
+
+        if (response == answer)
+        {
+            cout << "Correct! You deal extra damage.\n";
+            player.heal();
+            break;
+        }
+        else
+        {
+            cout << "Wrong! The right answer was “" << answer << "”.\n";
+            player.takeDamage();
+        }
+        
+        if (player.getGPA() <= 0.0) {
+            cout << "\nYou've failed the course. GPA hit 0. GAME OVER.\n";
+
+            if (remove("characters.txt") == 0) {
+                cout << "Your save file has been deleted.\n";
+            } else {
+                cout << "Failed to delete save file.\n";
+            }
+
+            exit(0);
+        }
     }
 }
 
@@ -43,10 +65,13 @@ void Enemy::takeDamage(int damage, Character &player)
 {
     health -= damage;
     cout << name << " took " << damage << " damage! ";
-    if (health <= 0) {
+    if (health <= 0)
+    {
         cout << name << " was defeated!\n";
         plusXP(player);
-    } else {
+    }
+    else
+    {
         cout << "Remaining health: " << health << "\n";
     }
 }
