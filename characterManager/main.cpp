@@ -24,9 +24,92 @@ bool startBattle(shared_ptr<Character>& player);
 void viewMentors(shared_ptr<Character> player);
 void askMentor(shared_ptr<Character> player);
 void checkStats(shared_ptr<Character> player);
+void showMainMenu(shared_ptr<Character> player);
 
 static size_t nextEnemy = 0;
 vector<unique_ptr<Enemy>> enemies;
+
+
+int main() {
+    
+    Character::loadAllMentors();
+    srand(static_cast<unsigned>(time(nullptr)));
+    shared_ptr<Character> player = nullptr;
+    
+    while (true) {
+        system("clear");
+        int click;
+        
+        while (true) {
+            try{
+                cout << "-- MAIN MENU --\n"
+                << "1. Create New Player\n"
+                << "2. Returning Player\n"
+                << "3. Start Game\n"
+                << "4. Quit\n"
+                << ">> ";
+                
+                if (!(cin >> click)) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    throw string("Invalid input: Please enter a number.");
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                if (click < 1 || click > 4)
+                    throw string("Invalid input: Number not in menu range.");
+                break;
+            }
+            catch(const string& e) {
+                cout << "Error! " << e << "\n\n";
+            }
+        }
+
+            
+            switch (click) {
+                case 1:
+                    player = createPlayer();
+                    break;
+                case 2: {
+                    ifstream inFile("characters.txt");
+                    if (!inFile) {
+                        cout << "No saved character found.\n";
+                        break;
+                    }
+                    string line, guild;
+                    getline(inFile, line);
+                    getline(inFile, guild);
+                    inFile.close();
+                    
+                    if (guild == "Cyber") {
+                        player = make_shared<Cyber>("");
+                    } else if (guild == "WebDev") {
+                        player = make_shared<WebDev>("");
+                    } else if (guild == "GameDev") {
+                        player = make_shared<GameDev>("");
+                    } else {
+                        player = make_shared<Character>("");
+                    }
+                    
+                    player->loadCharacter();
+                    break;
+                }
+                case 3:
+                    if (player) {
+                        showMainMenu(player);
+                        player = nullptr;
+                    } else {
+                        cout << "Create a character first!\n";
+                    }
+                    break;
+                case 4:
+                    return 0;
+            }
+            
+            cout << "\nPress Enter to continue...";
+            cin.get();
+        }
+        
+    }
 
 void showMainMenu(shared_ptr<Character> player)
 {
@@ -77,6 +160,7 @@ void showMainMenu(shared_ptr<Character> player)
             player = createPlayer();
             break;
         case 6:
+            player->saveCharacter();
             cout << "Thanks for playing!\n";
             return;
         default:
@@ -120,7 +204,7 @@ void viewMentors(shared_ptr<Character> player)
 {
     cout << "=== MENTORS ===\n";
     const vector<shared_ptr<Mentor>> &unlocked = player->getUnlockedMentors();
-        
+
     if (unlocked.empty())
     {
         cout << "None yet! Earn more XP.\n";
@@ -168,53 +252,7 @@ void checkStats(shared_ptr<Character> player)
     player->displayChar();
 }
 
-int main() {
-    Character::loadAllMentors();
-    srand(static_cast<unsigned>(time(nullptr)));
 
-    shared_ptr<Character> player = nullptr;
-
-    while (true) {
-        system("clear");
-        cout << "-- MAIN MENU --\n"
-             << "1. Create New Player\n"
-             << "2. Returning Player\n"
-             << "3. Start Game\n"
-             << "4. Quit\n"
-             << ">> ";
-
-        int click;
-        cin >> click;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-        switch (click) {
-            case 1:
-                player = createPlayer();
-                break;
-            case 2:
-                if (!player) {
-                    player = make_shared<Character>(string());
-                }
-                player->loadCharacter();
-                break;
-            case 3:
-                if (player) {
-                    showMainMenu(player);
-                    player = nullptr;
-                } else {
-                    cout << "Create a character first!\n";
-                }
-                break;
-            case 4:
-                return 0;
-            default:
-                cout << "Invalid choice!\n";
-        }
-
-        cout << "\nPress Enter to continue...";
-        cin.get();
-    }
-}
 
 shared_ptr<Character> createPlayer()
 {
@@ -253,7 +291,6 @@ shared_ptr<Character> createPlayer()
     player->setIdentity();
     player->setRace();
     player->displayChar();
-    player->saveCharacter();
 
     return player;
 }
