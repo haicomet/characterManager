@@ -121,9 +121,13 @@ void Character::levelUp() {
 }
 
 void Character::takeDamage() {
-    gpa -= 0.1;
+    gpa -= 0.5;
     confidence -= 0.5;
+
     if (gpa < 0.0) gpa = 0.0;
+    if (confidence < 0.0) confidence = 0.0;
+
+    cout << "Your GPA dropped by 0.5! Current GPA: " << gpa << "\n";
 }
 
 void Character::heal() {

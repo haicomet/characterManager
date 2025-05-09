@@ -22,8 +22,8 @@ public:
 
     virtual ~Enemy() = default;
 
-    virtual void attack();
-    virtual void generatePuzzle(Character &player);
+    virtual void attack() = 0;
+    virtual void generatePuzzle(Character &player) = 0;
     void takeDamage(int damage, Character &player);
 
     bool isDefeated();
