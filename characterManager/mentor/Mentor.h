@@ -26,8 +26,6 @@ public:
     string getHint();
 
     void displayBio();
-    void displayHint();
-
     virtual void displayHint() = 0;
 };
 
