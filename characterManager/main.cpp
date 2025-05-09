@@ -30,9 +30,19 @@ static size_t nextEnemy = 0;
 
 vector<unique_ptr<Enemy>> enemies = {
     make_unique<Quiz>(),
+    make_unique<Quiz>(),
+    make_unique<Quiz>(),
+
     make_unique<Midterm>(),
+    make_unique<Midterm>(),
+    make_unique<Midterm>(),
+    make_unique<Midterm>(),
+
     make_unique<PopQuiz>(),
+    
     make_unique<FinalExam>(),
+    make_unique<FinalExam>(),
+    
     make_unique<ImpostorSyndrome>()
 };
 
@@ -181,30 +191,46 @@ void showMainMenu(shared_ptr<Character> player)
 
 bool startBattle(shared_ptr<Character>& player)
 {
-	cout << "=== BATTLE CHALLENGE ===\n";
+    cout << "=== BATTLE CHALLENGE ===\n";
 
-	if (nextEnemy >= enemies.size()) {
-		cout << "You've completed all challenges!\n";
-		return true; // or false if you want to exit
-	}
+    while (true)
+    {
+        if (nextEnemy >= enemies.size())
+        {
+            cout << "You've defeated all available enemies!\n";
+            return true;
+        }
 
-	unique_ptr<Enemy>& enemy = enemies[nextEnemy];
-	++nextEnemy;
+        unique_ptr<Enemy>& enemy = enemies[nextEnemy];
+        nextEnemy++;
 
-	cout << "Challenge: " << enemy->getName() << "!\n";
+        cout << "Challenge: " << enemy->getName() << "!\n";
 
-	bool survived = enemy->generatePuzzle(*player);
+        bool survived = enemy->generatePuzzle(*player);
 
-	if (!survived)
-	{
-		player = nullptr;
-		return false;
-	}
+        if (!survived)
+        {
+            player = nullptr;
+            return false;
+        }
 
-	cout << "\nResult: You survived the challenge!\n";
-	plusXP(*player);
-	return true;
+        cout << "\nResult: You survived the challenge!\n";
+        plusXP(*player);
+
+        string cont;
+        cout << "\nDo you want to continue battling? (Y/N): ";
+        getline(cin, cont);
+        if (cont != "Y" && cont != "y")
+        {
+            break;
+        }
+
+        cout << "\n";
+    }
+
+    return true;
 }
+
 
 void viewMentors(shared_ptr<Character> player)
 {
