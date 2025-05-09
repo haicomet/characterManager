@@ -198,7 +198,6 @@ int main() {
             case 3:
                 if (player) {
                     showMainMenu(player);
-                    // After showMainMenu returns, assume player failed
                     player = nullptr;
                 } else {
                     cout << "Create a character first!\n";
