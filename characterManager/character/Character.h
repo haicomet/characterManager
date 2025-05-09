@@ -41,6 +41,7 @@ public:
     int getGrit();
     int getLogic();
     int getConfidence();
+    int getLevel();
     void displayChar();
     void levelUp();
     void takeDamage();

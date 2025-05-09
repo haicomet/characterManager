@@ -98,6 +98,7 @@ void Character::setConfidence(int c) {
 int Character::getGrit() { return grit; }
 int Character::getLogic() { return logic; }
 int Character::getConfidence() { return confidence; }
+int Character::getLevel() {return level; }
 
 void Character::displayChar() {
     cout << "\t|CHARACTER PROFILE|\n"
@@ -153,8 +154,9 @@ void plusXP(Character &c) {
              << "  Confidence: " << c.confidence << "\n"
              << "Current XP: " << c.xp
              << " / " << c.toLvlUp << "\n";
+                
+        c.unlockMentor(true);
         
-        c.unlockMentor();
     }
 }
 

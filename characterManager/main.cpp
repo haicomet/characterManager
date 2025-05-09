@@ -25,6 +25,9 @@ void viewMentors(shared_ptr<Character> player);
 void askMentor(shared_ptr<Character> player);
 void checkStats(shared_ptr<Character> player);
 
+static size_t nextEnemy = 0;
+vector<unique_ptr<Enemy>> enemies;
+
 void showMainMenu(shared_ptr<Character> player)
 {
     int choice;
@@ -89,8 +92,6 @@ bool startBattle(shared_ptr<Character>& player)
 {
     cout << "=== BATTLE CHALLENGE ===\n";
 
-    static size_t nextEnemy = 0;
-    vector<unique_ptr<Enemy>> enemies;
     enemies.push_back(make_unique<Quiz>());
     enemies.push_back(make_unique<Midterm>());
     enemies.push_back(make_unique<PopQuiz>());
@@ -119,6 +120,7 @@ void viewMentors(shared_ptr<Character> player)
 {
     cout << "=== MENTORS ===\n";
     const vector<shared_ptr<Mentor>> &unlocked = player->getUnlockedMentors();
+        
     if (unlocked.empty())
     {
         cout << "None yet! Earn more XP.\n";
