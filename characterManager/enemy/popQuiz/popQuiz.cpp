@@ -15,6 +15,6 @@ void PopQuiz::attack() {
     std::cout << "Pop Quiz ambushes you with true/false questions!\n";
 }
 
-void PopQuiz::generatePuzzle(Character &player) {
-    Enemy::generatePuzzle(player);
+bool PopQuiz::generatePuzzle(Character &player) {
+    return Enemy::generatePuzzle(player);
 }

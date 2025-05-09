@@ -21,6 +21,6 @@ void ImpostorSyndrome::attack() {
     std::cout << "Impostor Syndrome drains your confidence!\n";
 }
 
-void ImpostorSyndrome::generatePuzzle(Character &player) {
-    Enemy::generatePuzzle(player);
+bool ImpostorSyndrome::generatePuzzle(Character &player) {
+    return Enemy::generatePuzzle(player);
 }

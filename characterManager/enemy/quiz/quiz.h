@@ -9,7 +9,7 @@ class Quiz : public Enemy {
 public:
     Quiz();
     void attack() override;
-    void generatePuzzle(Character &player) override;
+    virtual bool generatePuzzle(Character &player) override;
 };
 
 #endif

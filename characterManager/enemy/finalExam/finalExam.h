@@ -8,7 +8,7 @@ class FinalExam : public Enemy {
 public:
     FinalExam();
     void attack() override;
-    void generatePuzzle(Character &player) override;
+    virtual bool generatePuzzle(Character &player) override;
 };
 
 #endif

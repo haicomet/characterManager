@@ -9,7 +9,7 @@ class PopQuiz : public Enemy {
 public:
     PopQuiz();
     void attack() override;
-    void generatePuzzle(Character &player) override;
+    virtual bool generatePuzzle(Character &player) override;
 };
 
 #endif

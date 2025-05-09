@@ -2,7 +2,7 @@
 #include <iostream>
 
 FinalExam::FinalExam()
-  : Enemy("Final Exam", 100, 5, {
+    : Enemy("Final Exam", 100, 5, {
         {"T or F: Templates are instantiated at compile time. (T/F)", "a"},
         {"Which smart pointer holds sole ownership of a resource? A) shared_ptr B) unique_ptr C) weak_ptr", "a"},
         {"Which specifier marks a function as not throwing exceptions? (A) throw() (B) noexcept (C) throw(...)", "a"},
@@ -15,6 +15,6 @@ void FinalExam::attack() {
     std::cout << "Final Exam challenges your mastery of C++!\n";
 }
 
-void FinalExam::generatePuzzle(Character &player) {
-    Enemy::generatePuzzle(player);
+bool FinalExam::generatePuzzle(Character &player) {
+    return Enemy::generatePuzzle(player);
 }

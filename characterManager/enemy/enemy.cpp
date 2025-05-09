@@ -19,7 +19,7 @@ void Enemy::attack()
 {
 }
 
-void Enemy::generatePuzzle(Character &player)
+bool Enemy::generatePuzzle(Character &player)
 {
     while (true)
     {
@@ -39,7 +39,7 @@ void Enemy::generatePuzzle(Character &player)
         {
             cout << "Correct! You deal extra damage.\n";
             player.heal();
-            break;
+            return true;
         }
         else
         {
@@ -56,7 +56,7 @@ void Enemy::generatePuzzle(Character &player)
                 cout << "Failed to delete save file.\n";
             }
 
-            exit(0);
+            return false;
         }
     }
 }
