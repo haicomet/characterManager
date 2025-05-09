@@ -3,17 +3,16 @@
 
 ImpostorSyndrome::ImpostorSyndrome()
   : Enemy("Impostor Syndrome", 50, 4, {
-        {"T or F: C++ supports multiple inheritance. (T/F)", "a"},
-        {"Which container provides FIFO access?\n"
-         "A) std::stack\n"
-         "B) std::queue\n"
-         "C) std::vector", "a"},
-        {"T or F: A lambda expression can capture local variables by reference. (T/F)", "a"},
-        {"Which keyword deletes the copy constructor in C++11?\n"
-         "A) delete\n"
-         "B) override\n"
-         "C) constexpr", "a"},
-        {"T or F: std::array is a fixed-size container introduced in C++17. (T/F)", "a"}
+        {"What is the correct way to declare an integer variable?\nA) int = x;\nB) int x;\nC) x int;", "b"},
+        {"Which symbol is used to access members of a pointer to an object?\nA) .\nB) ->\nC) &", "b"},
+        {"Which loop is guaranteed to execute at least once?\nA) for loop\nB) while loop\nC) do-while loop", "c"},
+        {"What is the default return type of a function if none is specified?\nA) void\nB) int\nC) undefined", "b"},
+        {"Which operator is used for comparison?\nA) =\nB) ==\nC) !=", "b"},
+        {"What is the output of: cout << 5 / 2; ?\nA) 2.5\nB) 2\nC) 2.0", "b"},
+        {"What is the purpose of 'cin' in C++?\nA) Output data\nB) Read input from user\nC) Declare constants", "b"},
+        {"Which of the following is used to include standard libraries?\nA) #import\nB) include()\nC) #include", "c"},
+        {"Where do local variables get stored?\nA) Heap\nB) Stack\nC) CPU", "b"},
+        {"What is the correct syntax to define a function that returns nothing?\nA) void myFunction() {}\nB) int myFunction[]\nC) none myFunction()", "a"}
     })
 {xpGained = 5;}
 
