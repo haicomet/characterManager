@@ -13,6 +13,7 @@ protected:
     int health;
     int difficulty;
     vector<pair<string,string>> puzzles;
+    int xpGained;
 
 public:
     Enemy(const string &n,
@@ -29,6 +30,7 @@ public:
     bool isDefeated();
     string getName();
     int getDifficulty();
+    int getXPGained();
 };
 
 #endif

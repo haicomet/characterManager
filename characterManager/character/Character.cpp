@@ -241,3 +241,14 @@ const vector<shared_ptr<Mentor>>& Character::getUnlockedMentors() const {
 double Character::getGPA() const {
     return gpa;
 }
+
+void Character::gainXP(int amount){
+    xp += amount;
+        cout << "Gained " << amount << " XP! Current XP: " << xp << " / " << toLvlUp << "\n";
+        while (xp >= toLvlUp) {
+            xp -= toLvlUp;
+            levelUp();
+            toLvlUp += 2;
+            boostStats(2, 2, 1);
+            unlockMentor(true);
+        }}

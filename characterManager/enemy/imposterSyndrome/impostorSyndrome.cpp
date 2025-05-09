@@ -15,7 +15,7 @@ ImpostorSyndrome::ImpostorSyndrome()
          "C) constexpr", "a"},
         {"T or F: std::array is a fixed-size container introduced in C++17. (T/F)", "a"}
     })
-{}
+{xpGained = 5;}
 
 void ImpostorSyndrome::attack() {
     std::cout << "Impostor Syndrome drains your confidence!\n";

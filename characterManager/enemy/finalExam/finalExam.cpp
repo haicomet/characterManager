@@ -9,7 +9,7 @@ FinalExam::FinalExam()
         {"T or F: C++17 introduced structured bindings. (T/F)", "a"},
         {"What is the syntax for deleting the copy constructor in C++11? e.g. MyClass(const MyClass&) = ?", "a"}
     })
-{}
+{xpGained = 4;}
 
 void FinalExam::attack() {
     std::cout << "Final Exam challenges your mastery of C++!\n";

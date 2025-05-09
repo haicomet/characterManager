@@ -9,7 +9,7 @@ PopQuiz::PopQuiz()
         {"True or False: A function in C++ can directly return multiple values. (T/F)", "a"},
         {"Is `int main()` mandatory in every C++ program? (Y/N)", "a"}
     })
-{}
+{xpGained = 3;}
 
 void PopQuiz::attack() {
     std::cout << "Pop Quiz ambushes you with true/false questions!\n";

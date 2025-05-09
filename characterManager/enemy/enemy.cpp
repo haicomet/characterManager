@@ -90,3 +90,8 @@ int Enemy::getDifficulty()
 {
     return difficulty;
 }
+
+int Enemy::getXPGained()
+{
+    return xpGained;
+}

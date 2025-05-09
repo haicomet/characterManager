@@ -9,7 +9,8 @@ Midterm::Midterm()
         {"Which operator is used for scope resolution in C++?", "a"},
         {"What keyword is used to declare a class in C++?", "a"}
     })
-{}
+{xpGained = 2;
+}
 
 void Midterm::attack() {
     std::cout << "Midterm hits you with an essay question!\n";

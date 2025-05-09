@@ -15,7 +15,8 @@ Quiz::Quiz()
          "C) <iostream>", "a"},
         {"T or F: C++ arrays know their own size at runtime. (T/F)", "a"}
     })
-{}
+{xpGained = 1;
+}
 
 void Quiz::attack() {
     std::cout << "Quiz throws multiple-choice questions at you!\n";
@@ -24,3 +25,4 @@ void Quiz::attack() {
 bool Quiz::generatePuzzle(Character &player) {
     return Enemy::generatePuzzle(player);
 }
+

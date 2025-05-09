@@ -53,6 +53,7 @@ public:
     void unlockMentor(bool showMessages = true);
     const vector<shared_ptr<Mentor>>& getUnlockedMentors() const;
     double getGPA() const;
+    void gainXP(int);
 };
 
 #endif 
