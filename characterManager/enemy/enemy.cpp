@@ -33,7 +33,6 @@ void Enemy::generatePuzzle(Character &player)
     if (response == answer) {
         cout << "Correct! You deal extra damage.\n";
         player.heal();
-        plusXP(player);
     } else {
         cout << "Wrong! The right answer was “" << answer << "”.\n";
         player.takeDamage();

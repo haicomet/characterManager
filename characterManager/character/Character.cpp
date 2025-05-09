@@ -21,7 +21,7 @@ void Character::setGuild(const string &guildName) {
 
 void Character::setBg() {
     int choice;
-    cout << "Which background best describes you?\n"
+    cout << "\nWhich background best describes you?\n"
          << "1. First-Generation College Student\n"
          << "2. Working Parent\n"
          << "3. Returning Student\n"
@@ -41,7 +41,7 @@ void Character::setBg() {
 
 void Character::setIdentity() {
     int choice;
-    cout << "What do you identify as?\n"
+    cout << "\nWhat do you identify as?\n"
          << "1. Nonbinary (they/them)\n"
          << "2. Female (she/her)\n"
          << "3. Male (he/him)\n"
@@ -63,7 +63,7 @@ void Character::setIdentity() {
 
 void Character::setRace() {
     int choice;
-    cout << "Which racial/ethnic identity do you most identify with?\n"
+    cout << "\nWhich racial/ethnic identity do you most identify with?\n"
          << "1. Black or African American\n"
          << "2. Hispanic or Latino/a/x\n"
          << "3. Asian or Pacific Islander\n"

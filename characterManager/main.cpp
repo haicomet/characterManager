@@ -19,6 +19,12 @@
 
 using namespace std;
 
+void clearScreen()
+{
+    for (int i = 0; i < 30; i++)
+        cout << "\n";
+}
+
 shared_ptr<Character> createPlayer();
 void startBattle(shared_ptr<Character> player);
 void viewMentors(shared_ptr<Character> player);
@@ -28,7 +34,7 @@ void checkStats(shared_ptr<Character> player);
 void showMainMenu(shared_ptr<Character> player) {
     int choice;
     do {
-        system("clear");
+        clearScreen();
         cout << "=== STEM Quest ===\n"
              << "1. Start Battle\n"
              << "2. View Mentors\n"
@@ -39,8 +45,8 @@ void showMainMenu(shared_ptr<Character> player) {
              << ">> ";
         cin >> choice;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        system("clear");
-
+        clearScreen();
+        
         switch (choice) {
             case 1:
                 if (player) startBattle(player);
@@ -144,7 +150,7 @@ int main() {
     int click;
 
     do {
-        system("clear");
+        clearScreen();
         cout << "-- MAIN MENU --\n"
              << "1. Create New Player\n"
              << "2. Returning Player\n"
@@ -185,7 +191,7 @@ shared_ptr<Character> createPlayer() {
     string name;
     int ch;
     shared_ptr<Character> player;
-    cout << "Enter name: ";
+    cout << "\nEnter name: ";
     getline(cin, name);
 
     cout << "\nTech area of interest:\n"
