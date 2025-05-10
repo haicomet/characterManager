@@ -207,7 +207,7 @@ void Character::loadAllMentors() {
 
 void Character::unlockMentor(bool showMessages) {
     if (level < allMentors.size()) {
-        shared_ptr<Mentor> mentorToUnlock = allMentors[level];
+        shared_ptr<Mentor> mentorToUnlock = allMentors[level-1];
 
         bool alreadyUnlocked = false;
         for (int i = 0; i < unlockedMentors.size(); ++i) {

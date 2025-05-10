@@ -1,44 +1,39 @@
 Cyber
-Anonymous
-The elusive hacktivist collective known for cyber-protests and advocating digital freedom. No face, no name, just action.
-Stay anonymous, but leave your code everywhere.
+Shanice Reynolds (she/her)
+First-gen Jamaican-American DevSecOps Lead at GitHub, optimized their global CI/CD pipeline.
+Your origin story is your advantage. Silicon Valley doesn't have a monopoly on genius.
 
 Cyber
-Linus Torvalds
-Creator of Linux and Git. Known for his no-nonsense leadership style and belief in open-source collaboration. Once said: "Talk is cheap. Show me the code."
-Break problems into smaller pieces. Even the kernel started with one line of code.
-
-Cyber
-Mati Aharoni
-Founder of Offensive Security and creator of Kali Linux. A pioneer in ethical hacking tools and cybersecurity education.
-Curiosity is your best tool. Test everything, assume nothing.
+Koffi Mensah (he/him)
+Togolese Security Engineer at Cloudflare, hardened systems against novel DDoS attacks.
+Your unique perspective is your superpower. The industry needs 10,000 more yous.
 
 GameDev
-Naotoshi Zin
-Lead developer of "Cave Story," a cult-classic indie game made entirely by one person over 5 years.
-Polish your game like it’s your last.
+Jamal Owens (they/them)
+African-American iOS Architect at Apple, optimized Swift compiler performance.
+Errors are just the program's way of asking for help - listen carefully
 
 GameDev
-Notch
-Creator of Minecraft. Proved that simplicity and creativity can build worlds. Started as a solo developer in his apartment.
-Games are about fun first. Optimize later.
+Thura Aung (she/her)
+Myanmar-born Data Engineering Manager at Spotify, revolutionized music recommendation systems.
+Failure is temporary data - use it to improve your next iteration
 
 GameDev
-Toru Iwatani
-Designed Pac-Man to appeal to everyone. Turned dots and ghosts into a global phenomenon.
-Design for joy, not just complexity
+Dilshod Rahimov (he/him)
+Uzbekistani Machine Learning Engineer at DeepMind, developed novel NPC behavior algorithms.
+Commit often - to your code and to learning new things daily
 
 WebDev
-Larry Page
-Google co-founder who transformed how we access information. Advocates for moonshot thinking.
-Automate the boring stuff. Focus on the 10x ideas.
+Carlos Mella (he/him)
+Dominican Cloud Architect at AWS, designed fault-tolerant systems for emerging markets.
+Commit often - to your code and to learning new things daily
 
 WebDev
-Sergey Brin
-Co-founder of Google. Revolutionized search algorithms and made the internet’s chaos navigable.
-Data beats opinions. Always test your assumptions.
+Jannatul Rahma (she/her)
+Bengali technical artist bridging the gap between programming and art departments at a major MMO studio.
+Elegant solutions often come after messy first attempts - keep iterating
 
 WebDev
-Tim Berners-Lee
-Inventor of the World Wide Web. Gave it to the world for free. Now fights for a decentralized, open internet.
-The web should empower, not control.
+Alejandra Cruz (she/her)
+Mexican systems architect designing the networking backbone for next-gen multiplayer experiences.
+Break big challenges into small steps - every complex system is just simple parts working together

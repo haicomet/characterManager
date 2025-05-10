@@ -25,61 +25,10 @@ void viewMentors(shared_ptr<Character> player);
 void askMentor(shared_ptr<Character> player);
 void checkStats(shared_ptr<Character> player);
 void showMainMenu(shared_ptr<Character> player);
+void setupEnemies();
 
 static size_t nextEnemy = 0;
-
 vector<unique_ptr<Enemy>> enemies;
-
-void setupEnemies() {
-    enemies.clear();
-    
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-    enemies.push_back(make_unique<Quiz>());
-
-    enemies.push_back(make_unique<Midterm>());
-    enemies.push_back(make_unique<Midterm>());
-    enemies.push_back(make_unique<Midterm>());
-    enemies.push_back(make_unique<Midterm>());
-    enemies.push_back(make_unique<Midterm>());
-    enemies.push_back(make_unique<Midterm>());
-    enemies.push_back(make_unique<Midterm>());
-    enemies.push_back(make_unique<Midterm>());
-    enemies.push_back(make_unique<Midterm>());
-    enemies.push_back(make_unique<Midterm>());
-    
-
-    enemies.push_back(make_unique<PopQuiz>());
-    enemies.push_back(make_unique<PopQuiz>());
-    enemies.push_back(make_unique<PopQuiz>());
-    enemies.push_back(make_unique<PopQuiz>());
-    enemies.push_back(make_unique<PopQuiz>());
-
-    
-    enemies.push_back(make_unique<FinalExam>());
-    enemies.push_back(make_unique<FinalExam>());
-    enemies.push_back(make_unique<FinalExam>());
-    enemies.push_back(make_unique<FinalExam>());
-
-    enemies.push_back(make_unique<ImpostorSyndrome>());
-    enemies.push_back(make_unique<ImpostorSyndrome>());
-    enemies.push_back(make_unique<ImpostorSyndrome>());
-    enemies.push_back(make_unique<ImpostorSyndrome>());
-    enemies.push_back(make_unique<ImpostorSyndrome>());
-
-};
-
 
 int main() {
 
@@ -177,49 +126,64 @@ void showMainMenu(shared_ptr<Character> player)
 		     << "5. Return to Character Creation\n"
 		     << "6. Quit\n"
 		     << ">> ";
-		cin >> choice;
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		system("clear");
-
-		switch (choice)
-		{
-		case 1:
-			if (player)
-			{
-                setupEnemies();
-				if (!startBattle(player))
-				{
-					return;
-				}
-			}
-			else
-			{
-				cout << "Create a character first!\n";
-			}
-			break;
-		case 2:
-			viewMentors(player);
-			break;
-		case 3:
-			askMentor(player);
-			break;
-		case 4:
-			if (player)
-				checkStats(player);
-			else
-				cout << "No character created yet!\n";
-			break;
-		case 5:
-			player = createPlayer();
-			break;
-		case 6:
-			player->saveCharacter();
-			cout << "Thanks for playing!\n";
-			return;
-		default:
-			cout << "Invalid choice!\n";
-		}
-
+		
+        try {
+            if (!(cin >> choice)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                throw string("Invalid input! Please enter a number (1-6).");
+            }
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            
+            if (choice < 1 || choice > 6) {
+                throw string("Invalid input! Please enter a number between 1-6.");
+            }
+            
+            system("clear");
+            
+            switch (choice)
+            {
+                case 1:
+                    if (player)
+                    {
+                        setupEnemies();
+                        if (!startBattle(player))
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        cout << "Create a character first!\n";
+                    }
+                    break;
+                case 2:
+                    viewMentors(player);
+                    break;
+                case 3:
+                    askMentor(player);
+                    break;
+                case 4:
+                    if (player)
+                        checkStats(player);
+                    else
+                        cout << "No character created yet!\n";
+                    break;
+                case 5:
+                    player = createPlayer();
+                    break;
+                case 6:
+                    player->saveCharacter();
+                    cout << "Thanks for playing!\n";
+                    return;
+            }
+        }catch(const string& errorMsg) {
+            system("clear");
+            cout << "Error: " << errorMsg << "\n";
+            cout << "Press Enter to retry...";
+            cin.get();
+            continue;
+        }
 		cout << "\nPress Enter to continue...";
 		cin.get();
 	} while (true);
@@ -362,3 +326,52 @@ shared_ptr<Character> createPlayer()
 
 	return player;
 }
+void setupEnemies() {
+    enemies.clear();
+    
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+    enemies.push_back(make_unique<Quiz>());
+
+    enemies.push_back(make_unique<Midterm>());
+    enemies.push_back(make_unique<Midterm>());
+    enemies.push_back(make_unique<Midterm>());
+    enemies.push_back(make_unique<Midterm>());
+    enemies.push_back(make_unique<Midterm>());
+    enemies.push_back(make_unique<Midterm>());
+    enemies.push_back(make_unique<Midterm>());
+    enemies.push_back(make_unique<Midterm>());
+    enemies.push_back(make_unique<Midterm>());
+    enemies.push_back(make_unique<Midterm>());
+    
+
+    enemies.push_back(make_unique<PopQuiz>());
+    enemies.push_back(make_unique<PopQuiz>());
+    enemies.push_back(make_unique<PopQuiz>());
+    enemies.push_back(make_unique<PopQuiz>());
+    enemies.push_back(make_unique<PopQuiz>());
+
+    
+    enemies.push_back(make_unique<FinalExam>());
+    enemies.push_back(make_unique<FinalExam>());
+    enemies.push_back(make_unique<FinalExam>());
+    enemies.push_back(make_unique<FinalExam>());
+
+    enemies.push_back(make_unique<ImpostorSyndrome>());
+    enemies.push_back(make_unique<ImpostorSyndrome>());
+    enemies.push_back(make_unique<ImpostorSyndrome>());
+    enemies.push_back(make_unique<ImpostorSyndrome>());
+    enemies.push_back(make_unique<ImpostorSyndrome>());
+
+};

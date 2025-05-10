@@ -35,6 +35,7 @@ bool Enemy::generatePuzzle(Character &player)
         string response;
         getline(cin, response);
 
+        for (char &c : response) c = toupper(c);
         if (response == answer)
         {
             cout << "Correct! You deal extra damage.\n";
