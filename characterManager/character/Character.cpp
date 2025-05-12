@@ -137,6 +137,7 @@ void Character::heal() {
     if (gpa > 5.0) gpa = 5.0;
 }
 
+// friend function that adds xp to the player
 void plusXP(Character &c) {
     c.xp += c.xpGained;
     cout << "Gained " << c.xpGained
