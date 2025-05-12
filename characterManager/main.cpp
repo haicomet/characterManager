@@ -28,6 +28,8 @@ void showMainMenu(shared_ptr<Character> player);
 void setupEnemies();
 
 static size_t nextEnemy = 0;
+
+//init of the enemy vecor
 vector<unique_ptr<Enemy>> enemies;
 
 int main() {
@@ -326,6 +328,8 @@ shared_ptr<Character> createPlayer()
 
 	return player;
 }
+
+//setup that puts enemies into the vector
 void setupEnemies() {
     enemies.clear();
     
